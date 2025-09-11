@@ -11,9 +11,13 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 <img width="1708" height="960" alt="image" src="https://eyedia.netlify.app/image.png" /></br>
 
+<br />
+
 **1-2. 개발 배경 및 필요성**
 
 본 프로젝트는 스마트 아이웨어(라즈베리파이) , LLM(대형 언어 모델), RAG(문서 검색 기반 생성 모델)을 활용하여 AI 기반 미술관 도슨트 시스템을 개발합니다. 사용자가 웹 환경에서 미술관의 특정 그림, 특정 객체에 대해 질문하면, 그에 대한 자연스럽고 자세한 설명을 제공합니다. 
+
+<br />
 
 **1-3. 프로젝트 특장점**
 - 실시간 맞춤형 AI 도슨트
@@ -24,6 +28,8 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - 상용 안내기의 폐쇄성·고가 대비, 오픈소스 기반으로 기능 자유 추가·변경·확장 가능
 - 시선(동공)·환경(작품)·음성(질의)·프론트 클릭 등 모든 입력을 실시간 통합 분석
 - 진정한 맞춤형 도슨트 경험 구현, 현장 적용 가능성과 확장성 입증
+
+<br />
 
 
 **1-4. 주요 기능**
@@ -38,12 +44,17 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - 클라우드 데이터 관리: 이미지/메타데이터는 S3, 관계 데이터는 RDS(MySQL)에 안전 저장
 - 웹앱 주요 기능: 메인/갤러리 감상, 스마트 아이웨어 연동 채팅, 대화 기록 확인·검색, 발췌 기능
 
+<br />
+
 **1-5. 기대 효과 및 활용 분야**
+
 기대 효과
 > 관람객의 시선·질의·행동을 토대로 해설을 즉시 생성해 기존 오디오 가이드보다 몰입감과 만족도를 높이고, 시선·질문·체류시간 등 행동 데이터를 축적·분석해 큐레이션과 동선 설계를 지속적으로 개선할 수 있습니다. 텍스트·음성(TTS)을 동시 제공해 연령·장애 유무와 상관없이 접근성을 강화하고, 웹(React)·백엔드(Spring) 기반 구조와 오픈소스 모듈러 설계로 현장/장비 제약 없이 빠른 배포와 기능 확장이 가능합니다. 팀과 기관 입장에서는 YOLO·CLIP·LLM·시선추적 등 융합 기술을 실전에서 다루며 운영 자동화 파이프라인을 축적해 인력·비용 효율을 동시에 확보합니다.
 
 활용 분야
 > 미술관·박물관·기념관 등 전시 공간에서 작품 맞춤 도슨트로 즉시 적용할 수 있고, 과학관·기업 쇼룸·브랜드 팝업/리테일 전시에서는 제품·프로토타입 이해를 돕는 인터랙티브 설명으로 전환율을 높일 수 있습니다. 도시 관광지·문화재 현장·야외 페스티벌/비엔날레에서는 GPS·비전 결합 안내로 현장성을 강화하고, 학교·대학·도서관·공공기관에서는 교육용 체험형 콘텐츠와 접근성 보조 해설로 학습 효과를 높입니다. 공항·역사·박람회 같은 대규모 유동 인프라에서는 다국어 안내와 군중 행태 데이터 분석에, 스마트 아이웨어와 결합한 투어·이벤트 운영에는 경량 장비 기반의 이동형 가이드로 확장 가능합니다.
+
+<br />
 
 **1-6. 기술 스택**
 - 프론트엔드 : React, Typescript, Tanstack Query Tailwind CSS
@@ -56,29 +67,20 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 ---
 
 ## **💡2. 팀원 소개**
-| <img width="80" height="100" src="https://github.com/user-attachments/assets/ab73bb1c-c1d4-464d-8ad3-635b45d5a8ae" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c7f66b7c-ab84-41fa-8fba-b49dba28b677" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c33252c7-3bf6-43cf-beaa-a9e2d9bd090b" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/0d5909f0-fc73-4ab9-be09-4d48e3e71083" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c7f66b7c-ab84-41fa-8fba-b49dba28b677" > |
+| [<img src="https://github.com/Dubabbi.png" width="150px">](https://github.com/Dubabbi) | [<img src="https://github.com/kcw9609.png" width="150px">](https://github.com/kcw9609) | [<img src="https://github.com/20210699.png" width="150px">](https://github.com/20210699) | [<img src="https://github.com/chaemin.png" width="150px">](https://github.com/chaemin) | [<img src="https://github.com/Yooni.png" width="150px">](https://github.com/Yooni) |
 |:---:|:---:|:---:|:---:|:---:|
-| **윤소은** | **강채원** | **김예빈** | **유채민** | **이윤서** |
-| • 팀장 <br> • 프론트엔드 | • 부팀장, 백엔드 총괄 <br> • 백엔드, 모델  | • 서기 <br> • CI/CD 구축 |• 비교과 총괄, 작업/보고서 관리 <br> • 백엔드 | • llm & 데이터분석 파트장 <br> • 백엔드/모델 |
+| [윤소은](https://github.com/Dubabbi)   | [강채원](https://github.com/kcw9609)   | [김예빈](https://github.com/20210699) | [유채민](https://github.com/chaemin) | [이윤서](https://github.com/Yooni) |
+| • 팀장 <br> • 프론트엔드 | • 부팀장, 백엔드 총괄 <br> • 백엔드, 모델  | • 서기 <br> • CI/CD 구축, 백엔드, 모델 |• 비교과 총괄, 작업/보고서 관리 <br> • 백엔드 | • llm & 데이터분석 파트장 <br> • 백엔드/모델 |
 
 
 
 ---
 ## **💡3. 시스템 구성도**
-- 서비스 구성도
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/28fc8453-d1a0-4184-8fd0-130d93d18545" />
-
-- 시스템 구성도
-<img width="500" alt="image" src="https://github.com/user-attachments/assets/076db477-f6f9-4374-8a2c-84172518cde0" />
 
 
-- 엔티티 관계도
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/76e3347b-6d94-491e-8aeb-a7b4601c54d5" />
-
-- 아이웨어 연결 -> 실시간 채팅 flow
-
-<img width="1920" height="1106" alt="image" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" />
-
+| 서비스 구성도 | 시스템 구성도 | 엔티티 관계도 | 아이웨어 연결 → 실시간 채팅 flow |
+|---------------|---------------|---------------|-----------------------------------|
+| <img width="160" alt="서비스 구성도" src="https://github.com/user-attachments/assets/b92dc6fe-0805-4f94-b179-313b86f62f24" /> | <img width="100" alt="시스템 구성도" src="https://github.com/user-attachments/assets/076db477-f6f9-4374-8a2c-84172518cde0" /> | <img width="315" alt="엔티티 관계도" src="https://github.com/user-attachments/assets/88d41b68-86a5-4132-bf8e-b8e4db92c87f" /> | <img width="290" alt="실시간 채팅 flow" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" /> |
 
 ---
 ## **💡4. 작품 소개영상**
