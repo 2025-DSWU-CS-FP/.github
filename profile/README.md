@@ -59,7 +59,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 | <img width="80" height="100" src="https://github.com/user-attachments/assets/ab73bb1c-c1d4-464d-8ad3-635b45d5a8ae" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c7f66b7c-ab84-41fa-8fba-b49dba28b677" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c33252c7-3bf6-43cf-beaa-a9e2d9bd090b" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/0d5909f0-fc73-4ab9-be09-4d48e3e71083" > | <img width="80" height="100" alt="image" src="https://github.com/user-attachments/assets/c7f66b7c-ab84-41fa-8fba-b49dba28b677" > |
 |:---:|:---:|:---:|:---:|:---:|
 | **윤소은** | **강채원** | **김예빈** | **유채민** | **이윤서** |
-| • 팀장 <br> • 프론트엔드 | • 백엔드 <br> • 백엔드 총괄 | • 백엔드 <br> • DB 서버 구축 |• 백엔드 <br> • 전처리 | • 모델 총괄 <br> • 백엔드/모델 |
+| • 팀장 <br> • 프론트엔드 | • 부팀장, 백엔드 총괄 <br> • 백엔드, 모델  | • 서기 <br> • CI/CD 구축 |• 비교과 총괄, 작업/보고서 관리 <br> • 백엔드 | • llm & 데이터분석 파트장 <br> • 백엔드/모델 |
 
 
 
@@ -83,8 +83,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 ---
 ## **💡4. 작품 소개영상**
 
-[![Eyedia 프로젝트 소개](https://eyedia.netlify.app/image.png)]([https://youtu.be/YcD3Lbn2FRI?si=isERqIAT9Aqvdqwp](https://www.youtube.com/watch?v=akFH7fvptO8))
-
+[![Eyedia 프로젝트 소개](https://eyedia.netlify.app/image.png)](https://www.youtube.com/watch?v=akFH7fvptO8)
 
 ---
 ## **💡5. 핵심 소스코드**
