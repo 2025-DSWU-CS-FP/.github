@@ -59,8 +59,8 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 **1-6. 기술 스택**
 - 프론트엔드 : React, Typescript, Tanstack Query Tailwind CSS
 - 백엔드 : Spring Boot
-- AI/ML : OpenAI API, Python(FastAPI)
-- 데이터베이스 : 
+- AI/ML : CLIP(임베딩), FAISS(유사도 검색/RAG), SBERT(텍스트 임베딩/보강),Ultralytics YOLOv8(객체 탐지/크롭), OpenCV(전처리·크롭)
+- 데이터베이스 : MySQL(RDS), S3(이미지·메타데이터), FAISS Index
 - 클라우드 : AWS
 - 배포 및 관리 : Docker, GitHub Actions, Netlify
 
