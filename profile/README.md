@@ -67,12 +67,16 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 ---
 
 ## **💡2. 팀원 소개**
+
 | [<img src="https://github.com/Dubabbi.png" width="150px">](https://github.com/Dubabbi) | [<img src="https://github.com/kcw9609.png" width="150px">](https://github.com/kcw9609) | [<img src="https://github.com/20210699.png" width="150px">](https://github.com/20210699) | [<img src="https://github.com/chaemin.png" width="150px">](https://github.com/chaemin) | [<img src="https://github.com/Yooni.png" width="150px">](https://github.com/Yooni) |
 |:---:|:---:|:---:|:---:|:---:|
 | [윤소은](https://github.com/Dubabbi)   | [강채원](https://github.com/kcw9609)   | [김예빈](https://github.com/20210699) | [유채민](https://github.com/chaemin) | [이윤서](https://github.com/Yooni) |
 | • 팀장 <br> • 프론트엔드 | • 부팀장, 백엔드 총괄 <br> • 백엔드, 모델  | • 서기 <br> • CI/CD 구축, 백엔드, 모델 |• 비교과 총괄, 작업/보고서 관리 <br> • 백엔드, 모델| • llm & 데이터분석 파트장 <br> • 하드웨어, 모델 |
 
+## 🖼️ 단체 사진
+> 우리 팀 최고
 
+![KakaoTalk_20250926_103746930](https://github.com/user-attachments/assets/5758f16b-64f5-44ff-b23d-e73ed3bb602d)
 
 ---
 ## **💡3. 시스템 구성도**
