@@ -15,7 +15,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 **1-2. 개발 배경 및 필요성**
 
-본 프로젝트는 스마트 아이웨어(라즈베리파이) , LLM(대형 언어 모델), RAG(문서 검색 기반 생성 모델)을 활용하여 AI 기반 미술관 도슨트 시스템을 개발합니다. 사용자가 웹 환경에서 미술관의 특정 그림, 특정 객체에 대해 질문하면, 그에 대한 자연스럽고 자세한 설명을 제공합니다. 
+본 프로젝트는 스마트 아이웨어(Jetson Nano) , LLM(대형 언어 모델), RAG(문서 검색 기반 생성 모델)을 활용하여 AI 기반 미술관 도슨트 시스템을 개발합니다. 사용자가 웹 환경에서 미술관의 특정 그림, 특정 객체에 대해 질문하면, 그에 대한 자연스럽고 자세한 설명을 제공합니다. 
 
 <br />
 
@@ -57,7 +57,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 <br />
 
 **1-6. 기술 스택**
-- 프론트엔드 : React, Typescript, Tanstack Query Tailwind CSS
+- 프론트엔드 : React, Typescript, Tanstack Query, Tailwind CSS
 - 백엔드 : Spring Boot
 - AI/ML : CLIP(임베딩), FAISS(유사도 검색/RAG), SBERT(텍스트 임베딩/보강),Ultralytics YOLOv8(객체 탐지/크롭), OpenCV(전처리·크롭)
 - 데이터베이스 : MySQL(RDS), S3(이미지·메타데이터), FAISS Index
