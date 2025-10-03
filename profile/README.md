@@ -37,6 +37,16 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
   </tbody>
 </table>
 
+<table>
+  <thead>
+    <tr>
+<td>
+<img width="5704" height="2172" alt="image" src="https://github.com/user-attachments/assets/8b7d6b68-bc32-42fe-a0a2-118e86f66d7f" />
+</td>
+    </tr>
+  </tbody>
+</table>
+
 <br />
 
 **1-3. 프로젝트 특장점**
@@ -63,6 +73,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - 실시간 통신/데이터 연동: Jetson Nano ↔ 백엔드 간 실시간 송수신(영상/시선/음성), 연동 완료
 - 클라우드 데이터 관리: 이미지/메타데이터는 S3, 관계 데이터는 RDS(MySQL)에 안전 저장
 - 웹앱 주요 기능: 메인/갤러리 감상, 스마트 아이웨어 연동 채팅, 대화 기록 확인·검색, 발췌 기능
+
 
 <br />
 
