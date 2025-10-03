@@ -192,6 +192,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 ## **💡4. 작품 소개영상**
 ### 🔗[Eyedia 프로젝트 소개 영상 보러가기](https://www.youtube.com/watch?v=akFH7fvptO8)
+### 🔗[Eyedia 팀의 웃픈 프로젝트 과정 보러가기](https://youtube.com/shorts/cawQaq1wMBc?si=ymtyX2Hwrhz8wHAg)
 
 <br />
 
