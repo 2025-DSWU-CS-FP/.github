@@ -173,7 +173,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 |아이웨어 연결 → 실시간 채팅 flow |
 | <img alt="실시간 채팅 flow" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" /> |
 |소프트웨어 아키텍처 | 
-| <img alt="소프트웨어 아키텍처" src="https://github.com/user-attachments/assets/9d2bb1e3-92b2-40c8-9e70-cba0176940ac" /> 
+| <img alt="소프트웨어 아키텍처" src="https://github.com/user-attachments/assets/fd473c00-e4a8-43a2-a77a-700d3a756f56" />|
 |하드웨어 설계 |
 | <img alt="image" src="https://github.com/user-attachments/assets/4e133f2f-6b13-40d0-9060-bb3cd9544da1" /> |
 
