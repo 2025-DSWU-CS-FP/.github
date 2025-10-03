@@ -58,20 +58,71 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 **1-6. 기술 스택**
 
-| 구분 | 항목 | 상세내용 |
-|---|---|---|
-| S/W 개발환경 | OS | macOS, Ubuntu 22.04 (AWS EC2), Windows |
-| S/W 개발환경 | 개발환경(IDE) | VSCode, IntelliJ, Colab |
-| S/W 개발환경 | 개발도구 | Spring Boot, React, FastAPI, FAISS, Docker, GitHub Actions |
-| S/W 개발환경 | 개발언어 | Java, TypeScript (JSX/TSX), Python, MySQL |
-| S/W 개발환경 | 기타사항 | AWS EC2/S3/Route53, OpenAI(GPT-4, TTS) |
-| H/W 구성장비 | 디바이스 | Jetson Nano (Jetson Orin Nano Super) + 카메라 2대 + 버튼 2개 |
-| H/W 구성장비 | 통신 | Wi-Fi, HTTP API 통신 (FastAPI ↔ Spring Boot ↔ React) |
-| H/W 구성장비 | 언어 | Python 기반 제어스크립트, OpenCV |
-| H/W 구성장비 | 기타사항 | Dual camera frame capture, 시선 좌표 추정(Gaze Estimation), 실시간 crop 객체 식별 |
-| 프로젝트 관리환경 | 형상관리 | Git, GitHub Actions CI/CD, Docker |
-| 프로젝트 관리환경 | 의사소통관리 | Discord, 카카오톡, GitHub Issues |
-| 프로젝트 관리환경 | 기타사항 | Notion, Google Drive, Google Sheets, Figma (UX 시안) |
+<table>
+  <thead>
+    <tr>
+      <th>구분</th>
+      <th>항목</th>
+      <th>상세내용</th>
+    </tr>
+  </thead>
+  <tbody>
+    <!-- S/W 개발환경 -->
+    <tr>
+      <td rowspan="5"><strong>S/W 개발환경</strong></td>
+      <td>OS</td>
+      <td>macOS, Ubuntu 22.04 (AWS EC2), Windows</td>
+    </tr>
+    <tr>
+      <td>개발환경(IDE)</td>
+      <td>VSCode, IntelliJ, Colab</td>
+    </tr>
+    <tr>
+      <td>개발도구</td>
+      <td>Spring Boot, React, FastAPI, FAISS, Docker, GitHub Actions</td>
+    </tr>
+    <tr>
+      <td>개발언어</td>
+      <td>Java, TypeScript (JSX/TSX), Python, MySQL</td>
+    </tr>
+    <tr>
+      <td>기타사항</td>
+      <td>AWS EC2/S3/Route53, OpenAI(GPT-4, TTS)</td>
+    </tr>
+    <!-- H/W 구성장비 -->
+    <tr>
+      <td rowspan="4"><strong>H/W 구성장비</strong></td>
+      <td>디바이스</td>
+      <td>Jetson Nano (Jetson Orin Nano Super) + 카메라 2대 + 버튼 2개</td>
+    </tr>
+    <tr>
+      <td>통신</td>
+      <td>Wi-Fi, HTTP API 통신 (FastAPI ↔ Spring Boot ↔ React)</td>
+    </tr>
+    <tr>
+      <td>언어</td>
+      <td>Python 기반 제어스크립트, OpenCV</td>
+    </tr>
+    <tr>
+      <td>기타사항</td>
+      <td>Dual camera frame capture, 시선 좌표 추정(Gaze Estimation), 실시간 crop 객체 식별</td>
+    </tr>
+    <!-- 프로젝트 관리환경 -->
+    <tr>
+      <td rowspan="3"><strong>프로젝트 관리환경</strong></td>
+      <td>형상관리</td>
+      <td>Git, GitHub Actions CI/CD, Docker</td>
+    </tr>
+    <tr>
+      <td>의사소통관리</td>
+      <td>Discord, 카카오톡, GitHub Issues</td>
+    </tr>
+    <tr>
+      <td>기타사항</td>
+      <td>Notion, Google Drive, Google Sheets, Figma (UX 시안)</td>
+    </tr>
+  </tbody>
+</table>
 
 - 프론트엔드 : React, Typescript, Tanstack Query, Tailwind CSS
 - 백엔드 : Spring Boot
