@@ -163,9 +163,19 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 ## **💡3. 시스템 구성도**
 
 
-| 서비스 구성도 | 시스템 구성도 | 엔티티 관계도 | 아이웨어 연결 → 실시간 채팅 flow |
-|---------------|---------------|---------------|-----------------------------------|
-| <img width="160" alt="서비스 구성도" src="https://github.com/user-attachments/assets/b92dc6fe-0805-4f94-b179-313b86f62f24" /> | <img width="100" alt="시스템 구성도" src="https://github.com/user-attachments/assets/076db477-f6f9-4374-8a2c-84172518cde0" /> | <img width="315" alt="엔티티 관계도" src="https://github.com/user-attachments/assets/88d41b68-86a5-4132-bf8e-b8e4db92c87f" /> | <img width="290" alt="실시간 채팅 flow" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" /> |
+| 서비스 구성도 | 시스템 구성도 |
+|---------------|---------------|
+| <img width="800" alt="image" src="https://github.com/user-attachments/assets/4d1a35a1-94cd-4e9a-9d65-77ba81888640" /> | <img width="400" alt="시스템 구성도" src="https://github.com/user-attachments/assets/076db477-f6f9-4374-8a2c-84172518cde0" /> | 
+
+|엔티티 관계도 |
+|---------------|
+| <img alt="image" src="https://github.com/user-attachments/assets/d7ae2534-8479-4a58-8778-6e110f80b84a" />|
+|아이웨어 연결 → 실시간 채팅 flow |
+| <img alt="실시간 채팅 flow" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" /> |
+|소프트웨어 아키텍처 | 
+| <img alt="소프트웨어 아키텍처" src="https://github.com/user-attachments/assets/9d2bb1e3-92b2-40c8-9e70-cba0176940ac" /> 
+|하드웨어 설계 |
+| <img alt="image" src="https://github.com/user-attachments/assets/4e133f2f-6b13-40d0-9060-bb3cd9544da1" /> |
 
 <br />
 
@@ -904,7 +914,7 @@ if __name__ == "__main__":
 </details>
 
 <details>
-  <summary><h3>모델 동공</h3></summary>
+  <summary><h3>모델</h3></summary>
 
 ```Python
 import os
