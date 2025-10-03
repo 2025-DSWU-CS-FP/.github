@@ -167,12 +167,13 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 |---------------|---------------|---------------|-----------------------------------|
 | <img width="160" alt="서비스 구성도" src="https://github.com/user-attachments/assets/b92dc6fe-0805-4f94-b179-313b86f62f24" /> | <img width="100" alt="시스템 구성도" src="https://github.com/user-attachments/assets/076db477-f6f9-4374-8a2c-84172518cde0" /> | <img width="315" alt="엔티티 관계도" src="https://github.com/user-attachments/assets/88d41b68-86a5-4132-bf8e-b8e4db92c87f" /> | <img width="290" alt="실시간 채팅 flow" src="https://github.com/user-attachments/assets/866d1f77-218b-4d0e-87de-4d3f139cc9fb" /> |
 
----
+<br />
+
 ## **💡4. 작품 소개영상**
+### 🔗[Eyedia 프로젝트 소개 영상 보러가기](https://www.youtube.com/watch?v=akFH7fvptO8)
 
-[![Eyedia 프로젝트 소개](https://eyedia.netlify.app/image.png)](https://www.youtube.com/watch?v=akFH7fvptO8)
+<br />
 
----
 ## **💡5. 핵심 소스코드**
 
 <details>
