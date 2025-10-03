@@ -57,6 +57,22 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 <br />
 
 **1-6. 기술 스택**
+
+| 구분 | 항목 | 상세내용 |
+|---|---|---|
+| S/W 개발환경 | OS | macOS, Ubuntu 22.04 (AWS EC2), Windows |
+| S/W 개발환경 | 개발환경(IDE) | VSCode, IntelliJ, Colab |
+| S/W 개발환경 | 개발도구 | Spring Boot, React, FastAPI, FAISS, Docker, GitHub Actions |
+| S/W 개발환경 | 개발언어 | Java, TypeScript (JSX/TSX), Python, MySQL |
+| S/W 개발환경 | 기타사항 | AWS EC2/S3/Route53, OpenAI(GPT-4, TTS) |
+| H/W 구성장비 | 디바이스 | Jetson Nano (Jetson Orin Nano Super) + 카메라 2대 + 버튼 2개 |
+| H/W 구성장비 | 통신 | Wi-Fi, HTTP API 통신 (FastAPI ↔ Spring Boot ↔ React) |
+| H/W 구성장비 | 언어 | Python 기반 제어스크립트, OpenCV |
+| H/W 구성장비 | 기타사항 | Dual camera frame capture, 시선 좌표 추정(Gaze Estimation), 실시간 crop 객체 식별 |
+| 프로젝트 관리환경 | 형상관리 | Git, GitHub Actions CI/CD, Docker |
+| 프로젝트 관리환경 | 의사소통관리 | Discord, 카카오톡, GitHub Issues |
+| 프로젝트 관리환경 | 기타사항 | Notion, Google Drive, Google Sheets, Figma (UX 시안) |
+
 - 프론트엔드 : React, Typescript, Tanstack Query, Tailwind CSS
 - 백엔드 : Spring Boot
 - AI/ML : CLIP(임베딩), FAISS(유사도 검색/RAG), SBERT(텍스트 임베딩/보강),Ultralytics YOLOv8(객체 탐지/크롭), OpenCV(전처리·크롭)
