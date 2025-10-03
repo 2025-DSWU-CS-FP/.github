@@ -245,13 +245,279 @@ public ApiResponse<?> detect(@RequestBody Long artId) {
 </details>
 
 <details>
-  <summary><h3>프론트엔드</h3></summary>
+  <summary><h3>프론트엔드 STOMP WebSocket 훅 (연결·구독·송신)</h3></summary>
 
-```Frontend
-코드 추가하기!!
+```tsx
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { IMessage, StompSubscription, IFrame } from '@stomp/stompjs';
+import makeStompClient from '@/services/ws/makeStompClient';
+import type { IncomingChat, OutgoingChat } from '@/types/chat';
+
+type Args = {
+  paintingId: number;
+  token?: string;
+  onConnected?: (headers: IFrame['headers']) => void;
+  topic?: string;
+  onRoomMessage?: (msg: IMessage) => void;
+};
+
+export default function useStompChat({
+  paintingId, token, onConnected, topic: topicOverride, onRoomMessage,
+}: Args) {
+  const [connected, setConnected] = useState(false);
+  const [messages, setMessages] = useState<IncomingChat[]>([]);
+  const clientRef = useRef<ReturnType<typeof makeStompClient> | null>(null);
+  const chatSubRef = useRef<StompSubscription | null>(null);
+  const roomSubRef = useRef<StompSubscription | null>(null);
+
+  const chatTopic = useMemo(
+    () => topicOverride ?? `/topic/chat/art/${paintingId}`,
+    [topicOverride, paintingId],
+  );
+  const roomTopic = useMemo(() => `/room/${paintingId}`, [paintingId]);
+
+  useEffect(() => {
+    const url = import.meta.env.VITE_WS_URL as string;
+    const client = makeStompClient({ url, token });
+    clientRef.current = client;
+
+    client.onConnect = (frame) => {
+      setConnected(true);
+      onConnected?.(frame.headers);
+
+      chatSubRef.current = client.subscribe(chatTopic, (f) => {
+        try { setMessages((p) => [...p, JSON.parse(f.body)]); } catch {}
+      });
+      roomSubRef.current = client.subscribe(roomTopic, (f) => onRoomMessage?.(f));
+    };
+
+    client.onWebSocketClose = () => setConnected(false);
+    client.activate();
+
+    return () => {
+      chatSubRef.current?.unsubscribe();
+      roomSubRef.current?.unsubscribe();
+      client.deactivate();
+    };
+  }, [token, chatTopic, roomTopic]);
+
+  const send = useCallback((content: string) => {
+    const body = JSON.stringify({ paintingId, content: content.trim() } as OutgoingChat);
+    if (content.trim()) clientRef.current?.publish({ destination: '/app/chat.sendMessage', body });
+  }, [paintingId]);
+
+  return { connected, messages, send, disconnect: () => clientRef.current?.deactivate() };
+}
 ```
+
 </details>
 
+
+<details>
+  <summary><h3>프론트엔드 아이웨어 연결 감지</h3></summary>
+
+```tsx
+import { useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import useStompChat from '@/hooks/use-stomp-chat';
+import getAuthToken from '@/utils/getToken';
+
+type QueueEvent = {
+  paintingId?: number; imgUrl?: string; title?: string; artist?: string;
+  description?: string; exhibition?: string; artId?: number;
+};
+
+export default function OnboardingPage() {
+  const [isConnected, setIsConnected] = useState(false);
+  const [userId, setUserId] = useState<string>();
+  const [detected, setDetected] = useState<QueueEvent | null>(null);
+  const navigate = useNavigate();
+  const token = getAuthToken();
+
+  const { connected, messages } = useStompChat({
+    paintingId: 0, token, topic: '/queue/events',
+    onConnected: (headers) => {
+      setIsConnected(true);
+      const uid = headers['user-name'] as string | undefined;
+      if (uid) setUserId(uid);
+    },
+  });
+
+  useEffect(() => {
+    const items = Array.isArray(messages) ? (messages as QueueEvent[]) : [];
+    const next = items.find((e) => typeof e?.paintingId === 'number');
+    if (next) setDetected(next);
+  }, [messages]);
+
+  useEffect(() => {
+    if (!detected?.paintingId) return;
+    const t = window.setTimeout(() => {
+      navigate('/chat-gaze', {
+        state: { userId, ...detected, artId: detected.artId ?? detected.paintingId },
+      });
+    }, 3000);
+    return () => window.clearTimeout(t);
+  }, [detected, userId, navigate]);
+
+  const text = useMemo(
+    () => (connected || isConnected) ? '아이웨어 연결 성공' : '전용 아이웨어를 연결해주세요.',
+    [connected, isConnected],
+  );
+
+  return (
+    // 연결 상태에 따라 온보딩 UI & 연결 애니메이션 렌더
+    // ...
+    <div aria-live="polite">{text}</div>
+  );
+}
+```
+
+</details>
+
+
+<details>
+  <summary><h3>프론트엔드 작품 확정 후 대화 시작</h3></summary>
+
+```tsx
+import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useStompChat from '@/hooks/use-stomp-chat';
+import useConfirmPainting from '@/services/mutations/useConfirmPainting';
+
+type LocationState = {
+  paintingId?: number; imgUrl?: string; title?: string; artist?: string;
+  description?: string; exhibition?: string; artId?: number;
+};
+
+export default function GazePage() {
+  const { state } = useLocation();
+  const s = (state as LocationState | null) ?? null;
+  const navigate = useNavigate();
+  const { mutate: confirmPainting, isPending } = useConfirmPainting();
+
+  const hasDetected = typeof s?.paintingId === 'number';
+  const pid = useMemo(() => (hasDetected ? (s!.paintingId as number) : -1), [hasDetected, s?.paintingId]);
+
+  const [minSpinDone, setMinSpinDone] = useState(false);
+  useEffect(() => { const t = setTimeout(() => setMinSpinDone(true), 2000); return () => clearTimeout(t); }, []);
+  const ready = hasDetected && minSpinDone;
+
+  useStompChat({ paintingId: pid });
+
+  const handleStartConversation = useCallback(() => {
+    if (pid < 0) return;
+    confirmPainting(pid, {
+      onSettled: () => {
+        navigate('/chat-artwork', {
+          state: { paintingId: pid, title: s?.title, artist: s?.artist, imgUrl: s?.imgUrl,
+                   description: s?.description, exhibition: s?.exhibition },
+          replace: true,
+        });
+      },
+    });
+  }, [confirmPainting, navigate, pid, s]);
+
+  return (
+    <button disabled={!ready || isPending} onClick={handleStartConversation}>대화 시작하기</button>
+  );
+}
+```
+
+</details>
+
+
+<details>
+  <summary><h3>프론트엔드 Artwork 대화</h3></summary>
+
+```tsx
+import { useMemo, useRef, useEffect, useState, useCallback } from 'react';
+import { nanoid } from 'nanoid';
+import { useNavigate, useLocation } from 'react-router-dom';
+import useStompChat from '@/hooks/use-stomp-chat';
+import useArtworkChat from '@/hooks/useArtworkChat';
+import useAutoScrollToEnd from '@/hooks/useAutoScrollToEnd';
+import useRoomMessageHandler from '@/hooks/useRoomMessageHandler';
+import useChatMessages from '@/services/queries/useChatMessages';
+import getAuthToken from '@/utils/getToken';
+import type { IncomingChat } from '@/types/chat';
+
+export default function ArtworkPage() {
+  const { state } = useLocation() as { state: { paintingId: number; imgUrl?: string; title?: string; artist?: string } };
+  const { paintingId, imgUrl, title = '작품', artist = '' } = state;
+
+  // 초기 서버 저장 메시지 불러오기
+  const { data: chatMessages } = useChatMessages(paintingId);
+  const initial = useMemo(() => (chatMessages ?? []).map(m => ({
+    id: nanoid(), content: m.content, sender: m.sender as 'USER' | 'BOT', type: 'TEXT' as const,
+  })), [chatMessages]);
+
+  // 로컬/타자/보이스 등 복합 채팅 훅
+  const {
+    localMessages, setLocalMessages, typing, submitAsk, startVoice,
+    promptText, voiceDisabled, didAutoAskRef, startTypewriter, speak,
+  } = useArtworkChat({ paintingId, onError: () => {/* toast */} });
+
+  // 방 이벤트 처리 핸들러(이미지 분석 등)
+  const onRoomMessage = useRoomMessageHandler({
+    paintingId, artworkInfo: { imgUrl }, processedIdsRef: useRef(new Set<string>()),
+    setLocalMessages, startTypewriter, speak,
+  });
+
+  // STOMP 연결 + 룸 토픽 구독
+  const token = getAuthToken();
+  const { connected, messages: wsMessages } = useStompChat({
+    paintingId, token, topic: `/topic/llm.${paintingId}`, onRoomMessage,
+  });
+
+  const wsList = wsMessages.map((m: IncomingChat) => ({
+    id: m.id ?? nanoid(), sender: m.sender, content: m.content, type: 'TEXT' as const,
+  }));
+
+  const endRef = useRef<HTMLDivElement>(null);
+  useAutoScrollToEnd([chatMessages, wsMessages, localMessages, typing], endRef);
+
+  return (
+    <>
+      {/* MessageList에 initial/ws/local/typing 전달 */}
+      {/* footer: 음성 startVoice 버튼, 키보드 입력 토글/ChatInputBar */}
+      {/* promptText: 연결 상태/가이드 문구 표시 */}
+    </>
+  );
+}
+```
+
+</details>
+
+<details>
+  <summary><h3>프론트엔드 발췌 저장(스크랩)</h3></summary>
+
+```tsx
+import { useQueryClient } from '@tanstack/react-query';
+import useSaveScrap from '@/services/mutations/useSaveScrap';
+import dateKST from '@/utils/dateKST';
+
+const queryClient = useQueryClient();
+const { mutate: saveScrap, isPending: saving } = useSaveScrap();
+
+function handleSaveExcerpt(quote: string, paintingId: number, exhibition: string, artist: string) {
+  const excerpt = quote.trim();
+  if (!excerpt) return /* toast: 없음 */;
+
+  saveScrap(
+    { paintingId, date: dateKST(), excerpt, location: exhibition, artist },
+    {
+      onSuccess: () => {
+        // 토스트 후 최신 리스트 재조회
+        queryClient.invalidateQueries({ queryKey: ['recentViewedArtworks'] });
+        queryClient.invalidateQueries({ queryKey: ['scrapsByExhibition'] });
+      },
+      onError: () => { /* toast: 실패 */ },
+    },
+  );
+}
+```
+
+</details>
 
 <details>
   <summary><h3>모델 동공</h3></summary>
