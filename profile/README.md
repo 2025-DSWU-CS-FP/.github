@@ -38,7 +38,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - LLM 도슨트 설명 생성: GPT-4o에 프롬프트 전달 → 한국어 구어체 설명 생성 → 채팅 형식으로 백엔드 전송(FastAPI)
 - 시선 추적·객체 선택(Gaze): OpenCV/MediaPipe로 동공 중심 추출 → Homography 기반 Gaze Mapping → YOLO bbox와 교차해 ‘응시 객체’ 판정 및 시선 시각화
 - 실시간 멀티모달 파이프라인: Jetson Nano가 환경/동공 영상+음성 수집→ Wi-Fi로 FastAPI 전송 → YOLO·CLIP·FAISS 처리 → STT/TTS → Spring Boot 저장/권한 → React 채팅 UI
-- 스마트 아이웨어 H/W: Pi 5(8GB) + Camera Module 3(환경) + Camera Module 3(눈동자) + Wi-Fi
+- 스마트 아이웨어 H/W: Jetson Nano + Camera Module 3(환경) + Camera Module 3(눈동자) + Wi-Fi
 - 음성 입출력 연동: 
 - 실시간 통신/데이터 연동: Jetson Nano ↔ 백엔드 간 실시간 송수신(영상/시선/음성), 연동 완료
 - 클라우드 데이터 관리: 이미지/메타데이터는 S3, 관계 데이터는 RDS(MySQL)에 안전 저장
