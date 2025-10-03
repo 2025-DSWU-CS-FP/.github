@@ -27,7 +27,15 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
   </tbody>
 </table>
 
-
+<table>
+  <thead>
+    <tr>
+<td>
+<img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/c4e5b611-932a-4ac0-a84f-927d70a8bcb2" />
+</td>
+    </tr>
+  </tbody>
+</table>
 
 <br />
 
