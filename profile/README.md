@@ -37,10 +37,10 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - 임베딩 기반 유사도 검색: CLIP 임베딩 + FAISS 코사인 유사도 검색으로 가장 유사한 객체와 설명을 자동 반환
 - LLM 도슨트 설명 생성: GPT-4o에 프롬프트 전달 → 한국어 구어체 설명 생성 → 채팅 형식으로 백엔드 전송(FastAPI)
 - 시선 추적·객체 선택(Gaze): OpenCV/MediaPipe로 동공 중심 추출 → Homography 기반 Gaze Mapping → YOLO bbox와 교차해 ‘응시 객체’ 판정 및 시선 시각화
-- 실시간 멀티모달 파이프라인: Raspberry Pi가 환경/동공 영상+음성 수집→ Wi-Fi로 FastAPI 전송 → YOLO·CLIP·FAISS 처리 → STT/TTS → Spring Boot 저장/권한 → React 채팅 UI
+- 실시간 멀티모달 파이프라인: Jetson Nano가 환경/동공 영상+음성 수집→ Wi-Fi로 FastAPI 전송 → YOLO·CLIP·FAISS 처리 → STT/TTS → Spring Boot 저장/권한 → React 채팅 UI
 - 스마트 아이웨어 H/W: Pi 5(8GB) + Camera Module 3(환경) + Camera Module 3 NoIR(적외선·눈동자) + ReSpeaker 2-Mics Pi HAT(마이크/스피커) + Wi-Fi
 - 음성 입출력 연동: 마이크로 STT용 입력→ 서버 처리 → TTS 결과를 스피커로 재생(장치 불량 교체 진행 메모 포함)
-- 실시간 통신/데이터 연동: Raspberry Pi ↔ 백엔드 간 실시간 송수신(영상/시선/음성), 연동 완료
+- 실시간 통신/데이터 연동: Jetson Nano ↔ 백엔드 간 실시간 송수신(영상/시선/음성), 연동 완료
 - 클라우드 데이터 관리: 이미지/메타데이터는 S3, 관계 데이터는 RDS(MySQL)에 안전 저장
 - 웹앱 주요 기능: 메인/갤러리 감상, 스마트 아이웨어 연동 채팅, 대화 기록 확인·검색, 발췌 기능
 
