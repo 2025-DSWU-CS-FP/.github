@@ -17,35 +17,13 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 본 프로젝트는 스마트 아이웨어(Jetson Nano) , LLM(대형 언어 모델), RAG(문서 검색 기반 생성 모델)을 활용하여 AI 기반 미술관 도슨트 시스템을 개발합니다. 사용자가 웹 환경에서 미술관의 특정 그림, 특정 객체에 대해 질문하면, 그에 대한 자연스럽고 자세한 설명을 제공합니다. </br></br>
 
-<table>
-  <thead>
-    <tr>
-<td>
+
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/878db6e0-ebba-4aa9-ae3c-e754b2bf8f15" />
-</td>
-    </tr>
-  </tbody>
-</table>
 
-<table>
-  <thead>
-    <tr>
-<td>
 <img width="3840" height="2160" alt="image" src="https://github.com/user-attachments/assets/c4e5b611-932a-4ac0-a84f-927d70a8bcb2" />
-</td>
-    </tr>
-  </tbody>
-</table>
 
-<table>
-  <thead>
-    <tr>
-<td>
 <img width="5704" height="2172" alt="image" src="https://github.com/user-attachments/assets/8b7d6b68-bc32-42fe-a0a2-118e86f66d7f" />
-</td>
-    </tr>
-  </tbody>
-</table>
+<br />
 
 <br />
 
