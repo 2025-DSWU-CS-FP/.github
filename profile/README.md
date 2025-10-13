@@ -47,6 +47,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 - 시선 추적·객체 선택(Gaze): OpenCV/MediaPipe로 동공 중심 추출 → Homography 기반 Gaze Mapping → YOLO bbox와 교차해 ‘응시 객체’ 판정 및 시선 시각화
 - 실시간 멀티모달 파이프라인: Jetson Nano가 환경/동공 영상+음성 수집→ Wi-Fi로 FastAPI 전송 → YOLO·CLIP·FAISS 처리 → STT/TTS → Spring Boot 저장/권한 → React 채팅 UI
 - 스마트 아이웨어 H/W: Jetson Nano + Camera Module 3(환경) + Camera Module 3(눈동자) + Wi-Fi
+- 음성 입출력 연동: 
 - 실시간 통신/데이터 연동: Jetson Nano ↔ 백엔드 간 실시간 송수신(영상/시선/음성), 연동 완료
 - 클라우드 데이터 관리: 이미지/메타데이터는 S3, 관계 데이터는 RDS(MySQL)에 안전 저장
 - 웹앱 주요 기능: 메인/갤러리 감상, 스마트 아이웨어 연동 채팅, 대화 기록 확인·검색, 발췌 기능
@@ -101,7 +102,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
     <tr>
       <td rowspan="4"><strong>H/W 구성장비</strong></td>
       <td>디바이스</td>
-      <td>Jetson Nano (Jetson Orin Nano Super) + 카메라 2대 + 버튼 2개</td>
+      <td>Jetson Nano (Jetson Orin Nano Super) + 카메라 2대 + usb 리모컨</td>
     </tr>
     <tr>
       <td>통신</td>
@@ -153,7 +154,8 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 
 | 서비스 구성도 | 시스템 구성도 |
 |---------------|---------------|
-| <img width="700" alt="image" src="https://github.com/user-attachments/assets/4d1a35a1-94cd-4e9a-9d65-77ba81888640" /> | <img width="442" alt="image" src="https://github.com/user-attachments/assets/24654a54-4c53-4b31-8604-854386241509" /> | 
+| <img width="800" height="530" alt="시나리오-2" src="https://github.com/user-attachments/assets/ebf44098-51b0-475d-baa6-13ff57a134b6" />| <img width="320" alt="image" src="https://github.com/user-attachments/assets/24654a54-4c53-4b31-8604-854386241509" /> | 
+
 
 |엔티티 관계도 |
 |---------------|
@@ -163,7 +165,7 @@ LLM과 RAG 기술을 활용한 AI기반 미술관 도슨트 서비스
 |소프트웨어 아키텍처 | 
 | <img alt="소프트웨어 아키텍처" src="https://github.com/user-attachments/assets/fd473c00-e4a8-43a2-a77a-700d3a756f56" />|
 |하드웨어 설계 |
-| <img alt="image" src="https://github.com/user-attachments/assets/4e133f2f-6b13-40d0-9060-bb3cd9544da1" /> |
+| <img alt="image" src="https://github.com/user-attachments/assets/0949f869-6451-42fb-b65e-b94d873ded62" />|
 
 <br />
 
@@ -882,7 +884,7 @@ def predict_loop(cap: cv2.VideoCapture):
 def main():
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("❌ 카메라를 열 수 없습니다.")
+        print("error: 카메라를 열 수 없습니다.")
         return
 
     try:
@@ -973,7 +975,7 @@ def embed_crop(image_bgr: np.ndarray, clip_model: CLIPModel, clip_processor: CLI
 def search_faiss(vec: np.ndarray, index: faiss.Index, meta: list) -> Tuple[str, float]:
     """
     CLIP 벡터→FAISS 검색→ (art_id, score) 반환
-    ⚠️ 주의: index metric에 따라 score 해석 상이(L2=작을수록 유사 / IP=클수록 유사)
+    주의: index metric에 따라 score 해석 상이(L2=작을수록 유사 / IP=클수록 유사)
     """
     D, I = index.search(vec.reshape(1, -1), k=1)
     idx = int(I[0][0])
@@ -1059,13 +1061,13 @@ def run_loop(mode: str = "art", selected_q: str = SELECTED_Q_DEFAULT):
     # 모드 확인
     mode = mode.lower().strip()
     if mode not in ("art", "area"):
-        print("❌ 잘못된 모드입니다. 'art' 또는 'area' 중 선택.")
+        print("error: 잘못된 모드입니다. 'art' 또는 'area' 중 선택.")
         return
 
     # 카메라 시작
     cap = cv2.VideoCapture(0)
     if not cap.isOpened():
-        print("❌ 카메라를 열 수 없습니다.")
+        print("error: 카메라를 열 수 없습니다.")
         return
 
     latest_painting_id = None
@@ -1094,11 +1096,11 @@ def run_loop(mode: str = "art", selected_q: str = SELECTED_Q_DEFAULT):
                     # 그리기
                     draw_detection(frame, label, art_id, score, (x1, y1, x2, y2))
 
-            cv2.imshow("🎨 Art-Like Detection + FAISS", frame)
+            cv2.imshow("Art-Like Detection + FAISS", frame)
 
             # 감지되면 백엔드 전송하고 종료
             if found and latest_painting_id:
-                print(f"🖼️ 감지된 그림 ID: {latest_painting_id}")
+                print(f"감지된 그림 ID: {latest_painting_id}")
                 if mode == "art":
                     post_backend_art(latest_painting_id)
                 else:
@@ -1114,9 +1116,9 @@ def run_loop(mode: str = "art", selected_q: str = SELECTED_Q_DEFAULT):
         cv2.destroyAllWindows()
 
     if latest_painting_id:
-        print("🎉 명령 실행 후 프로그램을 종료합니다.")
+        print("명령 실행 후 프로그램을 종료합니다.")
     else:
-        print("👋 프로그램을 정상 종료했습니다.")
+        print("프로그램을 정상 종료했습니다.")
 
 # -------------------------------------------------
 # 6) 엔트리포인트
@@ -1129,7 +1131,7 @@ if __name__ == "__main__":
     elif cmd.startswith("/detect-area"):
         run_loop("area", SELECTED_Q_DEFAULT)  # 필요 시 selected_q를 동적으로 바꿔도 됨
     else:
-        print("❌ 잘못된 명령입니다. 프로그램을 종료합니다.")
+        print("error:잘못된 명령입니다. 프로그램을 종료합니다.")
 
 ```
 </details>
